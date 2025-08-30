@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HpSlider : HpIndicator
+public class HealthSlider : HealthIndicator
 {
     private Slider _slider;
 
@@ -17,8 +17,8 @@ public class HpSlider : HpIndicator
         _slider.value = _slider.maxValue;
     }
 
-    protected override void TargetHpChannged()
+    protected override void TargetHealthChannged()
     {
-        _slider.value = Target.Health;
+        _slider.value = Target.Value;
     }
 }

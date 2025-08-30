@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class SmothHealthSlider : HpIndicator
+public class SmothHealthSlider : HealthIndicator
 {
     private Slider _slider;
     private float _newHpValue;
@@ -18,16 +18,9 @@ public class SmothHealthSlider : HpIndicator
         _newHpValue = Target.MaxHealth;
     }
 
-    private void FixedUpdate()
+    protected override void TargetHealthChannged()
     {
-        const float Delta = 0.2f;
-
-        _slider.value = Mathf.MoveTowards(_slider.value, _newHpValue, Delta);
-    }
-
-    protected override void TargetHpChannged()
-    {
-        _newHpValue = Target.Health;
+        _newHpValue = Target.Value;
         
         if (_coroutine != null)
         {
@@ -39,11 +32,11 @@ public class SmothHealthSlider : HpIndicator
 
     private IEnumerator SmoothSlider()
     {
-        const float delta = 0.1f;
+        const float Delta = 0.1f;
        
         while (Mathf.Abs(_slider.value - _newHpValue) > 0.01f)
         {
-            _slider.value = Mathf.MoveTowards(_slider.value, _newHpValue, delta);
+            _slider.value = Mathf.MoveTowards(_slider.value, _newHpValue, Delta);
             
             yield return null;
         }

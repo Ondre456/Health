@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public abstract class HealthInterractButton : MonoBehaviour
 {
     [SerializeField] protected int Value;
-    [SerializeField] protected HealthController Target;
+    [SerializeField] protected Health Target;
 
     private Button _button;
 

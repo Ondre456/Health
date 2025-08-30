@@ -2,6 +2,7 @@ public class DamageButton : HealthInterractButton
 {
     protected override void OnClick()
     {
-        Target.AcceptDamage(Value);
+        if (Target.IsAlive)
+            Target.AcceptDamage(Value);
     }
 }

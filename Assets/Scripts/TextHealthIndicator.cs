@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class TextHealthIndicator : HpIndicator
+public class TextHealthIndicator : HealthIndicator
 {
     private TextMeshProUGUI _healthTextBox;
     private int _targetMaxHealth;
@@ -15,8 +15,8 @@ public class TextHealthIndicator : HpIndicator
         _healthTextBox.text = $"{_targetMaxHealth}/{_targetMaxHealth}";
     }
 
-    protected override void TargetHpChannged()
+    protected override void TargetHealthChannged()
     {
-        _healthTextBox.text = $"{Target.Health}/{_targetMaxHealth}";
+        _healthTextBox.text = $"{Target.Value}/{_targetMaxHealth}";
     }
 }
